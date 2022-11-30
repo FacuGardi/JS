@@ -1,3 +1,26 @@
+let usuario;
+let usuarioStorage = sessionStorage.getItem("usuario");
+
+if (usuarioStorage) {
+    usuario = usuarioStorage;
+    let mensaje = `Bienvenido nuevamente ${usuario}`
+        ; alert(mensaje);
+} else {
+    usuario = prompt("por favor ingrese su usuario");
+    alert("Bienvenido por primera vez");
+    sessionStorage.setItem("usuario", usuario);
+}
+
+let img = document.getElementsByClassName("img-box");
+console.log(img[0].innerHTML);
+console.log(img[1].innerHTML);
+console.log(img[2].innerHTML);
+console.log(img[3].innerHTML);
+console.log(img[4].innerHTML);
+console.log(img[5].innerHTML);
+
+
+
 const productos = [
     { id: 1, nombre: "ilustracion", precio: 1000 },
     { id: 2, nombre: "cm", precio: 1800 },
@@ -7,30 +30,27 @@ const productos = [
     { id: 6, nombre: "ilustraciondet", precio: 1100 },
 ];
 
+localStorage.setItem("productos", JSON.stringify(productos));
+
+let productosStorage = JSON.parse(localStorage.getItem("productos"));
+
+
 let nombre = prompt("Ingrese el nombre del producto");
 
 let encontrado = productos.find(producto => producto.nombre === nombre);
 
 
 if (encontrado) {
-
     let mensaje = `
-
     id: ${encontrado.id}
-
     nombre: ${encontrado.nombre}
-
     $: ${encontrado.precio}
 
 `;
 
-
     alert(mensaje);
-
 } else {
-
     alert("Producto no encontrado")
-
 }
 
 
@@ -53,3 +73,7 @@ console.log(productosActualizados);
 
 const total = productos.reduce((acum, item) => acum + item.precio,);
 console.log(total);
+
+let boton = document.getElementsByClassName("boton");
+boton.addEventListener("click", () => console.log("click"));
+
