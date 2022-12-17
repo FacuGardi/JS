@@ -30,6 +30,19 @@ const productos = [
     { id: 6, nombre: "ilustraciondet", precio: 1100 },
 ];
 
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(response => response.json())
+    .then(data => {
+        data.forEach((producto) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+        id: ${encontrado.id}
+        nombre: ${encontrado.nombre}
+        $: ${encontrado.precio}`
+        });
+    });
+
+
 localStorage.setItem("productos", JSON.stringify(productos));
 
 let productosStorage = JSON.parse(localStorage.getItem("productos"));
@@ -50,7 +63,11 @@ if (encontrado) {
 
     alert(mensaje);
 } else {
-    alert("Producto no encontrado")
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No encotramos el producto',
+    })
 }
 
 
@@ -76,4 +93,5 @@ console.log(total);
 
 let boton = document.getElementsByClassName("boton");
 boton.addEventListener("click", () => console.log("click"));
+
 
